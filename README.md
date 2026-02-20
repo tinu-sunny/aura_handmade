@@ -111,4 +111,4 @@ Protected routes using middleware
 
 
 
-used packages =  react-router-dom,Material UI
+used packages =  react-router-dom,Material UI, swiper (Carousel)
