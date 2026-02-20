@@ -164,161 +164,104 @@ function LandingPageUser() {
     </section>
 
     {/* Featured Collections Section */}
-<section>
-  <Box sx={{ py: 8, px: { xs: 3, md: 10 }, backgroundColor: "#f8f8f6"}}>
+<section >
+ <Box sx={{ py: 8, px: { xs: 3, md: 10 }, backgroundColor: "#f8f8f6" }}>
 
-    {/* Header */}
-    <Box
+  {/* Header */}
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      mb: 6,
+    }}
+  >
+    <Typography
+      variant="h4"
       sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        mb: 6,
-       
+        fontFamily: "serif",
+        fontWeight: 500,
       }}
     >
-      <Typography
-        variant="h4"
-        sx={{
-          fontFamily: "serif",
-          fontWeight: 500, 
-        }}
-      >
-        Featured Collection
-      </Typography>
+      Featured Collection
+    </Typography>
 
-      <Button
-        variant="outlined"
-        sx={{
-          fontSize: "0.75rem",
-          letterSpacing: 1,
-          color: "#666",
-        }}
-      >
-        View All
-      </Button>
-    </Box>
-
-
-    <Box sx={{display:"flex" ,
-   flexDirection: "row",
-   gap:3,
-   justifyContent:"space-between",
- 
-
-  
-    }}>
-<Box sx={{width:"300px", boxShadow:"4px,2px,8px", borderRadius:"50px", backgroundColor:"#FFF", p:4}}>
-          <Box
-            sx={{
-              backgroundImage: `url("https://www.royalcropscience.com/product2/dummyproductimage.jpg")`,
-              height: "350px",
-              
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              mb: 3,
-              borderRadius:"10%"
-            }}
-          />
-
-          <Typography variant="h6">Title</Typography>
-          <Typography sx={{ color: "#777", mb: 1 }}>
-            Description
-          </Typography>
-          <Typography sx={{   color: "#8e2de2", fontWeight: 600,":hover":{
-            cursor:"pointer",
-            textDecoration:"underline"
-          } }}>
-            Discover
-          </Typography>
-        </Box>
-
-        <Box sx={{width:"300px", boxShadow:"4px,2px,8px", borderRadius:"50px", backgroundColor:"#FFF", p:4}}>
-          <Box
-            sx={{
-              backgroundImage: `url("https://www.royalcropscience.com/product2/dummyproductimage.jpg")`,
-              height: "350px",
-              
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              mb: 3,
-              borderRadius:"10%"
-            }}
-          />
-
-          <Typography variant="h6">Title</Typography>
-          <Typography sx={{ color: "#777", mb: 1 }}>
-            Description
-          </Typography>
-          <Typography sx={{   color: "#8e2de2", fontWeight: 600,":hover":{
-            cursor:"pointer",
-            textDecoration:"underline"
-          } }}>
-            Discover
-          </Typography>
-        </Box>
-
-
-        <Box sx={{width:"300px", boxShadow:"4px,2px,8px", borderRadius:"50px", backgroundColor:"#FFF", p:4}}>
-          <Box
-            sx={{
-              backgroundImage: `url("https://www.royalcropscience.com/product2/dummyproductimage.jpg")`,
-              height: "350px",
-              
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              mb: 3,
-              borderRadius:"10%"
-            }}
-          />
-
-          <Typography variant="h6">Title</Typography>
-          <Typography sx={{ color: "#777", mb: 1 }}>
-            Description
-          </Typography>
-          <Typography sx={{   color: "#8e2de2", fontWeight: 600,":hover":{
-            cursor:"pointer",
-            textDecoration:"underline"
-          } }}>
-            Discover
-          </Typography>
-        </Box>
-
-
-        <Box sx={{width:"300px", boxShadow:"4px,2px,8px", borderRadius:"50px", backgroundColor:"#FFF", p:4}}>
-          <Box
-            sx={{
-              backgroundImage: `url("https://www.royalcropscience.com/product2/dummyproductimage.jpg")`,
-              height: "350px",
-              
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              mb: 3,
-              borderRadius:"10%"
-            }}
-          />
-
-          <Typography variant="h6">Title</Typography>
-          <Typography sx={{ color: "#777", mb: 1 }}>
-            Description
-          </Typography>
-          <Typography sx={{   color: "#8e2de2", fontWeight: 600,":hover":{
-            cursor:"pointer",
-            textDecoration:"underline"
-          } }}>
-            Discover
-          </Typography>
-        </Box>
-
-      
-
-
-
-    </Box>
-
-   
-
+    <Button
+      variant="outlined"
+      sx={{
+        fontSize: "0.75rem",
+        letterSpacing: 1,
+        color: "#666",
+        borderColor: "#ccc",
+      }}
+    >
+      View All
+    </Button>
   </Box>
+
+  {/* Cards */}
+  <Box
+    sx={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 4,
+      justifyContent: "center",
+    }}
+  >
+    {[1, 2, 3, 4].map((item) => (
+      <Box
+        key={item}
+        sx={{
+          width: { xs: "100%", sm: "45%", md: "20%" },
+          backgroundColor: "#fff",
+          borderRadius: 4,
+          p: 2,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+          transition: "0.3s",
+          "&:hover": {
+            transform: "translateY(-8px)",
+            boxShadow: "0 15px 40px rgba(0,0,0,0.15)",
+          },
+        }}
+      >
+        {/* Image */}
+        <Box
+          sx={{
+            backgroundImage:
+              'url("https://www.royalcropscience.com/product2/dummyproductimage.jpg")',
+            height: 260,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            borderRadius: 3,
+            mb: 3,
+          }}
+        />
+
+        <Typography variant="h6" sx={{ fontWeight: 600 }}>
+          Title
+        </Typography>
+
+        <Typography sx={{ color: "#777", mb: 2, fontSize: "0.9rem" }}>
+          Description
+        </Typography>
+
+        <Typography
+          sx={{
+            color: "#8e2de2",
+            fontWeight: 600,
+            cursor: "pointer",
+            "&:hover": {
+              textDecoration: "underline",
+            },
+          }}
+        >
+          Discover →
+        </Typography>
+      </Box>
+    ))}
+  </Box>
+
+</Box>
 </section>
 
 {/*Testimonial */}
