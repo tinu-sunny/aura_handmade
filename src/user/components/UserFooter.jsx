@@ -25,7 +25,7 @@ function UserFooter() {
                 mb: 2,
               }}
             >
-              Aura Handmade
+             HASTHKALA
             </Typography>
 
             <Typography
@@ -129,7 +129,7 @@ function UserFooter() {
           }}
         >
           <Typography sx={{ fontSize: "0.75rem", color: "#9ca3af" }}>
-            © 2026 Aura Handmade. ALL RIGHTS RESERVED.
+            © 2026 HASTHKALA. ALL RIGHTS RESERVED.
           </Typography>
 
           <Box>

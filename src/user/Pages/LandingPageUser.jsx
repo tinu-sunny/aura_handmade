@@ -35,95 +35,132 @@ function LandingPageUser() {
     {/* landing page image section */}
     <section>
 
+ <Box
+  sx={{
+    height: "60vh",
+    backgroundImage: `url("https://t4.ftcdn.net/jpg/03/97/34/39/360_F_397343924_6WlXOaMVHNKkhMs2l8AHJ5e9MQ03YiBU.jpg")`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    color: "#fff",
+    position: "relative",
+  }}
+>
+  {/* Premium Gradient Overlay */}
   <Box
+    sx={{
+      position: "absolute",
+      inset: 0,
+      background:
+        "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.4))",
+    }}
+  />
+
+  {/* Content */}
+  <Box sx={{ position: "relative", zIndex: 2, px: 3 }}>
+    {/* Main Title */}
+    <Typography
       sx={{
-        height: "60vh",
-        backgroundImage: `url("https://media.istockphoto.com/id/1215812761/photo/internet-shopping-with-laptop.jpg?s=612x612&w=0&k=20&c=K4RcbDJLHIPZb_oU7okSK4dX1tkEJVU-jhqxYQwTP9s=")`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        color: "#fff",
-        position: "relative",
+        fontFamily: "serif",
+        fontSize: { xs: "2.5rem", md: "4.5rem" },
+        fontWeight: 500,
+        letterSpacing: 4,
+        textShadow: "2px 4px 15px rgba(0,0,0,0.6)",
       }}
     >
-      {/* Dark Overlay */}
-      <Box
+      HASTHKALA
+    </Typography>
+
+    {/* Decorative Line */}
+    <Box
+      sx={{
+        width: 80,
+        height: 3,
+        background: "linear-gradient(90deg, #8e2de2, #4a00e0)",
+        mx: "auto",
+        my: 2,
+        borderRadius: 5,
+      }}
+    />
+
+    {/* Tagline */}
+    <Typography
+      sx={{
+        fontFamily: "serif",
+        fontStyle: "italic",
+        fontSize: { xs: "1rem", md: "1.5rem" },
+        maxWidth: 700,
+        mx: "auto",
+        mb: 2,
+        opacity: 0.9,
+      }}
+    >
+      Crafted with Love to Bring Handmade Happiness for Every Occasion.
+    </Typography>
+
+    <Typography
+      sx={{
+        mb: 4,
+        letterSpacing: 2,
+        fontSize: "0.9rem",
+        opacity: 0.8,
+      }}
+    >
+      By Smitha
+    </Typography>
+
+    {/* Buttons */}
+    <Box
+      sx={{
+        display: "flex",
+        gap: 3,
+        justifyContent: "center",
+        flexWrap: "wrap",
+      }}
+    >
+      <Button
+        variant="contained"
         sx={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.57)",
+          background: "linear-gradient(90deg, #8e2de2, #4a00e0)",
+          px: 5,
+          py: 1.5,
+          fontWeight: 600,
+          borderRadius: "30px",
+          letterSpacing: 1,
+          boxShadow: "0px 8px 25px rgba(142,45,226,0.4)",
+          "&:hover": {
+            transform: "translateY(-3px)",
+            boxShadow: "0px 12px 30px rgba(142,45,226,0.6)",
+          },
         }}
-      />
+      >
+        SIGN UP
+      </Button>
 
-      {/* Content */}
-      <Box sx={{ position: "relative", zIndex: 2 }}>
-        <Typography
-        variant='h1'
-          sx={{
-            fontFamily: "serif",
-            fontSize: { xs: "2.5rem", md: "4.5rem" },
-            fontWeight: 300,
-          }}
-        >
-     Aura Handmade 
-
-
-        </Typography>
-
-        <Typography
-          variant="h1"
-          sx={{
-            fontFamily: "serif",
-            fontStyle: "italic",
-            fontSize: { xs: "1rem", md: "2rem" },
-            mb: 4,
-          }}
-         
-        >
-        Crafted with Love to Bring Handmade Happiness for Every Occasion. 
-        </Typography>
-
-
-        <Box sx={{ display: "flex", gap: 2, justifyContent: "center", flexWrap: "wrap" }}>
-          <Button
-            variant="contained"
-            sx={{
-              background: "linear-gradient(90deg, #8e2de2, #4a00e0)",
-              px: 4,
-              py: 1.5,
-              fontWeight: 600,
-              letterSpacing: 1,
-              "&:hover": {
-                opacity: 0.9,
-              },
-            }}
-          >
-            sign up 
-          </Button>
-
-          <Button
-            variant="outlined"
-            sx={{
-              color: "#fff",
-              borderColor: "#fff",
-              px: 4,
-              py: 1.5,
-              letterSpacing: 1,
-              "&:hover": {
-                borderColor: "#fff",
-                backgroundColor: "rgba(255,255,255,0.1)",
-              },
-            }}
-          >
-         SHOP COLLECTION
-          </Button>
-        </Box>
-      </Box>
+      <Button
+        variant="outlined"
+        sx={{
+          color: "#fff",
+          borderColor: "#fff",
+          px: 5,
+          py: 1.5,
+          borderRadius: "30px",
+          letterSpacing: 1,
+          backdropFilter: "blur(4px)",
+          "&:hover": {
+            backgroundColor: "rgba(255,255,255,0.15)",
+            borderColor: "#fff",
+          },
+        }}
+      >
+        SHOP COLLECTION
+      </Button>
     </Box>
-
+  </Box>
+</Box>
     </section>
 
     {/* Featured Collections Section */}
