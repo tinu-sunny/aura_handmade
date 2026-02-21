@@ -4,6 +4,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { useContext } from "react";
+import { contextState } from "../../context/ContextApiState";
 
 const style = {
   position: "absolute",
@@ -18,7 +20,7 @@ const style = {
 };
 
 function Auth() {
-  const [open, setOpen] = useState(false);
+  const {open, setOpen} = useContext(contextState) 
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,6 +49,7 @@ function Auth() {
         aria-labelledby="modal-title"
       >
         <Box sx={style}>
+            
           <Typography variant="h6" sx={{ mb: 2 }}>
             Login Required
           </Typography>
