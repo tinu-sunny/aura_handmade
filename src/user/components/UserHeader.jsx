@@ -26,7 +26,7 @@ function UserHeader() {
 
   const navItems = [
     { label: "Home", path: "/" },
-    { label: "Our Story", path: "/about" },
+    { label: "About Us", path: "/about" },
     { label: "Collections", path: "/collections" },
     { label: "Contact", path: "/contact" }
   ];
