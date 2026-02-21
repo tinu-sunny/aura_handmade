@@ -18,6 +18,7 @@ import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import Auth from "./Auth";
 
 function UserHeader() {
   const [open, setOpen] = useState(false);
@@ -95,21 +96,8 @@ function UserHeader() {
                 </IconButton>
               </>
             )}
-
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "#f4b400",
-                color: "#000",
-                fontWeight: 600,
-                px: { xs: 1.5, md: 3 },
-                "&:hover": {
-                  backgroundColor: "#dca300"
-                }
-              }}
-            >
-              Login
-            </Button>
+<Auth/>
+           
           </Box>
         </Toolbar>
       </AppBar>
