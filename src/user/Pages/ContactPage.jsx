@@ -24,7 +24,7 @@ function ContactPage() {
               sx={{
                 position: "relative",
                height:"500px",
-               width:{xs:"250px",md:"500px",lg:"500px"},
+               width:{xs:"auto",md:"500px",lg:"500px"},
                 backgroundImage:
                   "url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85')",
                 backgroundSize: "cover",
