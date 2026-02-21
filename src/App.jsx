@@ -6,6 +6,7 @@ import ContactPage from "./user/Pages/ContactPage";
 import AdminLandingPage from "./Admin/pages/AdminLandingPage";
 import AdminOrderViewPage from "./Admin/pages/AdminOrderViewPage";
 import AdminProductsManagePage from "./Admin/pages/AdminProductsManagePage";
+import Collections from "./user/Pages/Collections";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="" element={<LandingPageUser />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/collections" element={<Collections/>}/>
 
         {/* admin paths */}
         <Route path="/admin" element={<AdminLandingPage/>}/>
