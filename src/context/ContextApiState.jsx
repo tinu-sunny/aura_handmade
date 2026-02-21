@@ -1,23 +1,22 @@
-import React, { createContext } from 'react'
-import { useState } from 'react'
+import React, { createContext } from "react";
+import { useState } from "react";
 
+// create context
+export const contextState = createContext("");
 
-// create context 
-export  const contextState = createContext("")
+function ContextApiState({ children }) {
+  // Create global state
 
-function ContextApiState({children}) {
-    // Create global state 
+  const [open, setOpen] = useState(false);
+  const [auth, setAuth] = useState(true);
 
-    const [open, setOpen] =useState(false)
   return (
     <>
-    <contextState.Provider value={{open,setOpen}}>
-        {
-            children
-        }
-    </contextState.Provider>
+      <contextState.Provider value={{ open, auth, setOpen, setAuth }}>
+        {children}
+      </contextState.Provider>
     </>
-  )
+  );
 }
 
-export default ContextApiState
+export default ContextApiState;
