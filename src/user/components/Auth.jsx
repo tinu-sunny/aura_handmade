@@ -35,6 +35,7 @@ function Auth() {
   
   const navigate = useNavigate();
   //   usestates
+    const [token,setToken]= useState('')
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -61,7 +62,18 @@ function Auth() {
   };
   const handleClose = () => setOpen(false);
 
+// logout fuunction 
 
+  const handleLogout =async()=>{
+    sessionStorage.clear()
+       window.location.reload()
+
+  }
+
+  useEffect(()=>{
+    const tk = sessionStorage.getItem('token')
+    setToken(tk)
+  })
   // formvalidation registration
   const validateFormRegister = () => {
     let newErrors = {};
@@ -164,6 +176,7 @@ const handleUserLogin = async()=>{
 
       if( response.data.loginUser.role=="user"){
        navigate("/collections")
+       window.location.reload()
       }
       
     }
@@ -183,21 +196,39 @@ const handleUserLogin = async()=>{
 
   return (
     <>
-      <Button
-        onClick={handleOpen}
-        variant="contained"
-        sx={{
-          backgroundColor: "#f4b400",
-          color: "#000",
-          fontWeight: 600,
-          px: { xs: 1.5, md: 3 },
-          "&:hover": {
-            backgroundColor: "#dca300",
-          },
-        }}
-      >
-        Login
-      </Button>
+     {token ? <div>
+        <Button
+          onClick={()=>{handleLogout()}}
+          variant="contained"
+          sx={{
+            backgroundColor: "#f4b400",
+            color: "#000",
+            fontWeight: 600,
+            px: { xs: 1.5, md: 3 },
+            "&:hover": {
+              backgroundColor: "#dca300",
+            },
+          }}
+        >
+          LogOut
+        </Button>
+      </div>: <div>
+        <Button
+          onClick={handleOpen}
+          variant="contained"
+          sx={{
+            backgroundColor: "#f4b400",
+            color: "#000",
+            fontWeight: 600,
+            px: { xs: 1.5, md: 3 },
+            "&:hover": {
+              backgroundColor: "#dca300",
+            },
+          }}
+        >
+          Login
+        </Button>
+      </div>}
 
       <Modal open={open} onClose={handleClose} aria-labelledby="modal-title">
         <Box sx={style}>

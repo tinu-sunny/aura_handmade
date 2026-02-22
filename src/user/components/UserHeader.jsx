@@ -25,12 +25,16 @@ function UserHeader() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+
+
   const navItems = [
     { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
     { label: "Collections", path: "/collections" },
     { label: "Contact", path: "/contact" }
   ];
+
+
 
   return (
     <>
