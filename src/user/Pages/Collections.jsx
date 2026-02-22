@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import UserHeader from '../components/UserHeader'
 import UserFooter from '../components/UserFooter'
 import { Box, Button, Typography } from '@mui/material'
+import { contextState } from '../../context/ContextApiState'
 
 function Collections() {
+  const {open,setOpen}= useContext(contextState)
   return (
 
 <   >
@@ -36,6 +38,7 @@ function Collections() {
  <Box sx={{display:"flex", flexDirection:'column',  justifyContent:'center', alignItems:'center'}}>
   {/* Button */}
     <Button
+    onClick={()=>setOpen(true)}
       variant="contained"
       sx={{
         px: 4,
