@@ -8,6 +8,7 @@ import AdminOrderViewPage from "./Admin/pages/AdminOrderViewPage";
 import AdminProductsManagePage from "./Admin/pages/AdminProductsManagePage";
 import Collections from "./user/Pages/Collections";
 import ProductViewPage from "./user/Pages/ProductViewPage";
+import CategoryProductView from "./user/Pages/CategoryProductView";
 
 function App() {
   return (
@@ -18,16 +19,21 @@ function App() {
         <Route path="" element={<LandingPageUser />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        <Route path="/collections" element={<Collections/>}/>
-        <Route path="/product-view/:id" element={<ProductViewPage/>}/>
+        <Route path="/collections" element={<Collections />} />
+        <Route path="/product-view/:id" element={<ProductViewPage />} />
+        <Route
+          path="/category-product-view/:id"
+          element={<CategoryProductView />}
+        />
 
         {/* admin paths */}
-        <Route path="/admin" element={<AdminLandingPage/>}/>
-        <Route path="/admin-order-view-page" element={<AdminOrderViewPage/>}/>
-        <Route path="/admin-product-manage-page" element={<AdminProductsManagePage/>}/>
-
+        <Route path="/admin" element={<AdminLandingPage />} />
+        <Route path="/admin-order-view-page" element={<AdminOrderViewPage />} />
+        <Route
+          path="/admin-product-manage-page"
+          element={<AdminProductsManagePage />}
+        />
       </Routes>
-      
     </>
   );
 }
