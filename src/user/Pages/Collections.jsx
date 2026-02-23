@@ -240,52 +240,52 @@ function Collections() {
               justifyContent="center"
             >
               {collections.map((item, index) => (
-                <Link to={`/category-product-view/${index}`}>
-                  <Grid
-                    item
-                    xs={6}
-                    sm={3}
-                    key={index}
+                <Grid
+                  component={RouterLink}
+                  to={`/category-product-view/${index}`}
+                  sx={{
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                  item
+                  xs={6}
+                  sm={3}
+                  key={index}
+                >
+                  <Box
                     sx={{
-                      textDecoration: "none",
-                      color: "black",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      cursor: "pointer",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                        transition: "0.3s",
+                      },
                     }}
                   >
-                    <Box
+                    <Avatar
+                      src={item.img}
+                      alt={item.title}
                       sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        cursor: "pointer",
-                        "&:hover": {
-                          transform: "scale(1.05)",
-                          transition: "0.3s",
-                        },
+                        width: 120,
+                        height: 120,
+                        mb: 2,
+                        boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+                      }}
+                    />
+
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        fontWeight: 600,
+                        letterSpacing: "1px",
                       }}
                     >
-                      <Avatar
-                        src={item.img}
-                        alt={item.title}
-                        sx={{
-                          width: 120,
-                          height: 120,
-                          mb: 2,
-                          boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-                        }}
-                      />
-
-                      <Typography
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: 600,
-                          letterSpacing: "1px",
-                        }}
-                      >
-                        {item.title}
-                      </Typography>
-                    </Box>
-                  </Grid>
-                </Link>
+                      {item.title}
+                    </Typography>
+                  </Box>
+                </Grid>
               ))}
             </Grid>
           </Box>
@@ -295,48 +295,55 @@ function Collections() {
           <Box sx={{ px: { xs: 2, md: 8 }, py: 6, backgroundColor: "#f9fafb" }}>
             <Grid container gap={6} spacing={4}>
               {products.map((product, index) => (
-                <Link to={`/product-view/${index}`}>
-                  <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid
+                  sx={{ textDecoration: "none" }}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  key={index}
+                  component={RouterLink}
+                  to={`/product-view/${index}`}
+                >
+                  <Box
+                    sx={{
+                      backgroundColor: "#fff",
+                      borderRadius: 3,
+                      p: 2,
+                      width: "100%",
+                      position: "relative",
+                      transition: "0.3s",
+                      "&:hover": {
+                        transform: "translateY(-5px)",
+                        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+                      },
+                    }}
+                  >
+                    {/* Product Image */}
+                    <Box
+                      component="img"
+                      src={product.image}
+                      alt={product.name}
+                      sx={{
+                        width: "100%",
+                        height: 320,
+                        objectFit: "contain",
+                        mb: 2,
+                      }}
+                    />
+
+                    {/* Product Info */}
                     <Box
                       sx={{
-                        backgroundColor: "#fff",
-                        borderRadius: 3,
-                        p: 2,
-                        width: "100%",
-                        position: "relative",
-                        transition: "0.3s",
-                        "&:hover": {
-                          transform: "translateY(-5px)",
-                          boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-                        },
+                        display: "flex",
+                        justifyContent: "space-between",
                       }}
                     >
-                      {/* Product Image */}
-                      <Box
-                        component="img"
-                        src={product.image}
-                        alt={product.name}
-                        sx={{
-                          width: "100%",
-                          height: 320,
-                          objectFit: "contain",
-                          mb: 2,
-                        }}
-                      />
-
-                      {/* Product Info */}
-                      <Box
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Typography sx={{ fontWeight: 500 }}>name</Typography>
-                        <Typography sx={{ color: "#6b7280" }}>price</Typography>
-                      </Box>
+                      <Typography sx={{ fontWeight: 500 }}>name</Typography>
+                      <Typography sx={{ color: "#6b7280" }}>price</Typography>
                     </Box>
-                  </Grid>
-                </Link>
+                  </Box>
+                </Grid>
               ))}
             </Grid>
           </Box>
