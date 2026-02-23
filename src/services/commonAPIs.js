@@ -15,6 +15,7 @@ const commonAPIs = async(httpMethod,url,reqbody,reqheader={})=>{
 
     .catch(err=>{
         throw err; 
+        // return err
     })
 }
 

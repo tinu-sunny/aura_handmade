@@ -7,6 +7,7 @@ import AdminLandingPage from "./Admin/pages/AdminLandingPage";
 import AdminOrderViewPage from "./Admin/pages/AdminOrderViewPage";
 import AdminProductsManagePage from "./Admin/pages/AdminProductsManagePage";
 import Collections from "./user/Pages/Collections";
+import ProductViewPage from "./user/Pages/ProductViewPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/collections" element={<Collections/>}/>
+        <Route path="/product-view/:id" element={<ProductViewPage/>}/>
 
         {/* admin paths */}
         <Route path="/admin" element={<AdminLandingPage/>}/>

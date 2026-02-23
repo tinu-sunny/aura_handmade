@@ -4,7 +4,7 @@ import UserFooter from '../components/UserFooter'
 import { Box, Button, Typography } from '@mui/material'
 import { contextState } from '../../context/ContextApiState'
 import {  Grid, Avatar,Chip  } from "@mui/material";
-    import { Link as RouterLink } from "react-router-dom";
+    import { Link, Link as RouterLink } from "react-router-dom";
 const collections = [
   { link:"n", title: "HOME NAME BOARDS", img: "https://rezica.com/cdn/shop/files/AgarwalsGold6.jpg?v=1712305383" },
   { link:"", title: "HOME DECORATION", img: "https://www.giboxonline.com/cdn/shop/articles/Homemade_Diwali_Decor_Ideas_1100x.jpg?v=1695376025" },
@@ -253,49 +253,51 @@ const [token,setToken]=useState('')
  <Box sx={{ px: { xs: 2, md: 8 }, py: 6, backgroundColor: "#f9fafb" }}>
       <Grid container gap={6} spacing={4}>
         {products.map((product, index) => (
-          <Grid item  xs={12} sm={6} md={4} key={index} >
-            <Box
-              sx={{
-                backgroundColor: "#fff",
-                borderRadius: 3,
-                p: 2,
-                width:"100%",
-                position: "relative",
-                transition: "0.3s",
-                "&:hover": {
-                  transform: "translateY(-5px)",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-                },
-              }}
-            >
-             
-
-              {/* Product Image */}
+        <Link to={`/product-view/${index}`}>
+            <Grid item  xs={12} sm={6} md={4} key={index} >
               <Box
-                component="img"
-                src={product.image}
-                alt={product.name}
                 sx={{
-                  width: "100%",
-                  height: 320,
-                  objectFit: "contain",
-                  mb: 2,
+                  backgroundColor: "#fff",
+                  borderRadius: 3,
+                  p: 2,
+                  width:"100%",
+                  position: "relative",
+                  transition: "0.3s",
+                  "&:hover": {
+                    transform: "translateY(-5px)",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+                  },
                 }}
-              />
-
-              {/* Product Info */}
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography sx={{ fontWeight: 500 }}>
-                  name
-                </Typography>
-                <Typography sx={{ color: "#6b7280" }}>
-                 price
-                </Typography>
+              >
+               
+  
+                {/* Product Image */}
+                <Box
+                  component="img"
+                  src={product.image}
+                  alt={product.name}
+                  sx={{
+                    width: "100%",
+                    height: 320,
+                    objectFit: "contain",
+                    mb: 2,
+                  }}
+                />
+  
+                {/* Product Info */}
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography sx={{ fontWeight: 500 }}>
+                    name
+                  </Typography>
+                  <Typography sx={{ color: "#6b7280" }}>
+                   price
+                  </Typography>
+                </Box>
+  
+                
               </Box>
-
-              
-            </Box>
-          </Grid>
+            </Grid>
+        </Link>
         ))}
       </Grid>
     </Box>

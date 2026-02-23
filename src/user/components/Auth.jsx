@@ -138,6 +138,7 @@ const validateFormLogin = () => {
 
   try {
     const response = await userRegistration(userData);
+// console.log(response);
 
     // success case (201)
     if (response.status === 201) {
