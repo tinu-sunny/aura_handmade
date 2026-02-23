@@ -13,8 +13,11 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Password } from "@mui/icons-material";
 import { useEffect } from "react";
-import { loginUser, userRegistration } from "../../services/allAPIs";
+import { googleLogin, loginUser, userRegistration } from "../../services/allAPIs";
 import { useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -139,6 +142,7 @@ const validateFormLogin = () => {
     // success case (201)
     if (response.status === 201) {
       setUserData(user)
+      setAuth(true)
       alert(response.data.message);
     }
 
@@ -178,6 +182,9 @@ const handleUserLogin = async()=>{
        navigate("/collections")
        window.location.reload()
       }
+      else if(response.data.loginUser.role=="admin"){
+        navigate('/admin')
+      }
       
     }
     
@@ -190,6 +197,46 @@ const handleUserLogin = async()=>{
     
   }
 }
+
+
+const handleGoogleLogin =async(credentialResponse)=>{
+  // console.log("google login");
+
+  const decode = jwtDecode(credentialResponse.
+credential
+)
+console.log(decode);
+
+const reqbody = {
+  name:decode.name,
+  email:decode.email,
+  profile:decode.picture,
+  
+}
+
+const response = await googleLogin(reqbody)
+console.log(response);
+
+if(response.status===201 || response.status===200){
+ sessionStorage.setItem("token",response.data.token);
+  const role =response.data.loginUser?.role || response.data.role;
+  if( role === "user"){
+       navigate("/collections")
+       window.location.reload()
+      }
+      else if(role === "admin" ){
+        navigate('/admin')
+      }
+  alert("Login successful")
+}
+
+
+  
+
+}
+
+
+
 
 
 
@@ -344,6 +391,7 @@ const handleUserLogin = async()=>{
                 fullWidth
                 variant="contained"
                 sx={{
+                  mt:2,
                   backgroundColor: "#dca100c0",
                   "&:hover": { backgroundColor: "#dca300" },
                 }}
@@ -351,6 +399,18 @@ const handleUserLogin = async()=>{
               >
                 Login
               </Button>
+
+             <Box sx={{mt:2}}>
+                <GoogleLogin
+    onSuccess={credentialResponse => {
+      console.log(credentialResponse);
+                handleGoogleLogin(credentialResponse)
+    }}
+    onError={() => {
+      console.log('Login Failed');
+    }}
+  />
+             </Box>
             </div>
           ) : (
             <div>

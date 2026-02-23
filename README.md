@@ -111,4 +111,4 @@ Protected routes using middleware
 
 
 
-used packages =  react-router-dom,Material UI, swiper (Carousel) , contextApi(for modale auth login register) , axios(api indegartion)
+used packages =  react-router-dom,Material UI, swiper (Carousel) , contextApi(for modale auth login register) , axios(api indegartion),react-oauth/google(google login)

@@ -4,16 +4,19 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import ContextApiState from './context/ContextApiState.jsx'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-
-    <ContextApiState>
+<GoogleOAuthProvider clientId={import.meta.env.VITE_CLIENTID}>
+ <ContextApiState>
 
     <App />
     
     </ContextApiState>
+</GoogleOAuthProvider>
+   
     </BrowserRouter>
   </StrictMode>,
 )
