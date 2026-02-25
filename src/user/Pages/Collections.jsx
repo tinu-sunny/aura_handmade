@@ -293,7 +293,7 @@ function Collections() {
           {/* products view */}
 
           <Box sx={{ px: { xs: 2, md: 8 }, py: 6, backgroundColor: "#f9fafb" }}>
-            <Grid container gap={6} spacing={4}>
+            <Grid container gap={5} >
               {products.map((product, index) => (
                 <Grid
                   sx={{ textDecoration: "none" }}
