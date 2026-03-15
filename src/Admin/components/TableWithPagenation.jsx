@@ -12,6 +12,7 @@ import {
   Box,
   Dialog
 } from "@mui/material";
+import AdminModal from "./AdminModal";
 
 const products = [
   {
@@ -228,29 +229,9 @@ const handleImageClose = () => {
       alignItems: "center"
     }}
   >
-    <Box
-      sx={{
-        p: 1,
-        borderRadius: 2,
-        backgroundColor: "#e3f2fd",
-        cursor: "pointer",
-        "&:hover": { backgroundColor: "#bbdefb" }
-      }}
-    >
-      <span className="solar--eye-bold-duotone"></span>
-    </Box>
+ <AdminModal view={"productView"}/>
 
-    <Box
-      sx={{
-        p: 1,
-        borderRadius: 2,
-        backgroundColor: "#fff3e0",
-        cursor: "pointer",
-        "&:hover": { backgroundColor: "#ffe0b2" }
-      }}
-    >
-      <span className="material-symbols--edit-outline-rounded"></span>
-    </Box>
+ <AdminModal view={"ProductEdit"}/>
   </Box>
 </TableCell>
                 </TableRow>

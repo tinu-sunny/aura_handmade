@@ -4,6 +4,7 @@ import AdminFooter from '../components/AdminFooter'
 import { Box, Button, Select, TextField, Typography,InputAdornment, MenuItem } from '@mui/material'
 import SearchIcon from "@mui/icons-material/Search";
 import TableWithPagenation from '../components/TableWithPagenation';
+import AdminModal from '../components/AdminModal';
 
 function AdminProductsManagePage() {
   return (
@@ -64,19 +65,7 @@ function AdminProductsManagePage() {
 </Box>
   {/* new product add button */}
   <Box>
-    <Button variant='contained' sx={{backgroundColor:"#f4b400",color:"black",  animation: "fadeSlide 1.4s ease-in-out",
-      "@keyframes fadeSlide": {
-        "0%": {
-          opacity: 0,
-          transform: "translateY(20px)",
-        },
-        "100%": {
-          opacity: 1,
-          transform: "translateY(0)",
-        },
-      }}}>
-    <span class="material-symbols-light--add" ></span>  Add New Products
-    </Button>
+  <AdminModal view={"addNewProduct"}/>
   </Box>
    </Box>
 
