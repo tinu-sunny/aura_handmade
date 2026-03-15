@@ -142,7 +142,6 @@ function CustomerDetailsViewPage() {
   </Box>
 
 </Box>
-
 {/* Table For product view  */}
 <Box sx={{mt:5}} >
   <TableWithPagenation/>

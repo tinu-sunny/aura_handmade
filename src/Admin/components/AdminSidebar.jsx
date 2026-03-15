@@ -31,7 +31,7 @@ function AdminSidebar() {
       { label: "Products", path: "/admin-product-manage-page" },
       { label: "Orders", path: "/admin-order-view-page" },
       { label: "Customers", path: "/admin-customer-view-page" },
-      { label: "Enquiry", path: "*" }
+      { label: "Enquiry", path: "/admin-enquiry-view-page" }
     ];
   return (
    <>
