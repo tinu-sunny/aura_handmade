@@ -20,3 +20,10 @@ export const googleLogin =  async(reqbody)=>{
 export const getUser = async()=>{
     return await commonAPIs('GET',`${serverURL}/admin`,{},{})
 }
+
+
+// admin API calls
+
+export const adminallusersview = async()=>{
+    return await commonAPIs('GET',`${serverURL}/admin-all-customer-views`,{},{})
+}

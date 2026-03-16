@@ -107,7 +107,9 @@ const products = [
   },
 ];
 
-function TableWithPagination() {
+function TableWithPagination({users}) {
+  console.log(users);
+  
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [openImage, setOpenImage] = React.useState(false);
@@ -144,16 +146,13 @@ const handleImageClose = () => {
           {/* TABLE HEADER */}
           <TableHead>
             <TableRow sx={{ backgroundColor: "#f4b400" }}>
-              {[
-                "Image",
-                "Product Name",
-                "Category",
+          { users ?  [
                 "ID",
-                "Stock",
-                "Price",
-                "Status",
-                "Action",
-              ].map((head) => (
+                " Name",
+                "Email",
+                "phone",
+                "Profile",
+                   ].map((head) => (
                 <TableCell
                   key={head}
                   sx={{
@@ -165,13 +164,13 @@ const handleImageClose = () => {
                 >
                   {head}
                 </TableCell>
-              ))}
+              )):""}
             </TableRow>
           </TableHead>
 
           {/* TABLE BODY */}
           <TableBody>
-            {products
+            {users
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((product) => (
                 <TableRow
@@ -183,11 +182,20 @@ const handleImageClose = () => {
                     },
                   }}
                 >
-                 <TableCell>
+
+ <TableCell>{product.id}</TableCell>
+                  <TableCell sx={{ fontWeight: 500 }}>
+                    {product.name}
+                  </TableCell>
+                  
+                  <TableCell>{product.email}</TableCell>
+
+                  <TableCell>{product.phone}</TableCell>
+                                   <TableCell>
   <img
-    src={product.image}
-    alt={product.productName}
-    onClick={() => handleImageOpen(product.image)}
+    src={product.profile}
+    alt={product.name}
+    onClick={() => handleImageOpen(product.profile)}
     style={{
       width: 50,
       height: 50,
@@ -201,15 +209,9 @@ const handleImageClose = () => {
   />
 </TableCell>
 
-                  <TableCell sx={{ fontWeight: 500 }}>
-                    {product.productName}
-                  </TableCell>
+                 
 
-                  <TableCell>{product.category}</TableCell>
-
-                  <TableCell>{product.id}</TableCell>
-
-                  <TableCell>{product.stockCount}</TableCell>
+                  {/* <TableCell>{product.stockCount}</TableCell>
 
                   <TableCell>₹{product.price}</TableCell>
 
@@ -233,7 +235,7 @@ const handleImageClose = () => {
 
  <AdminModal view={"ProductEdit"}/>
   </Box>
-</TableCell>
+</TableCell> */}
                 </TableRow>
               ))}
           </TableBody>
