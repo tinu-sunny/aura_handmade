@@ -40,7 +40,7 @@ function Auth() {
   //   usestates
     const [token,setToken]= useState('')
   const [user, setUser] = useState({
-    name: "",
+    username: "",
     email: "",
     phone: "",
     password: "",
@@ -81,7 +81,7 @@ function Auth() {
   const validateFormRegister = () => {
     let newErrors = {};
 
-    if (!userData.name?.trim()) {
+    if (!userData.username?.trim()) {
       newErrors.name = "Name is required";
     }
 
@@ -209,7 +209,7 @@ credential
 console.log(decode);
 
 const reqbody = {
-  name:decode.name,
+  username:decode.name,
   email:decode.email,
   profile:decode.picture,
   
@@ -229,6 +229,7 @@ if(response.status===201 || response.status===200){
         navigate('/admin')
       }
   alert("Login successful")
+  setOpen(false)
 }
 
 
@@ -416,12 +417,12 @@ if(response.status===201 || response.status===200){
           ) : (
             <div>
               <TextField
-              value={userData.name}
+              value={userData.username}
                 label="Full Name"
                 fullWidth
                 margin="normal"
                 onChange={(e) =>
-                  setUserData({ ...userData, name: e.target.value })
+                  setUserData({ ...userData, username: e.target.value })
                 }
                 error={!!errors.name}
                 helperText={errors.name}

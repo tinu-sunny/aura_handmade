@@ -104,8 +104,11 @@ function Collections() {
     const tk = sessionStorage.getItem("token");
     console.log(tk);
     setToken(tk);
-  }, []);
 
+  }, [open]);
+
+  // console.log("tokeb",token);
+  
   return (
     <>
       <UserHeader />
