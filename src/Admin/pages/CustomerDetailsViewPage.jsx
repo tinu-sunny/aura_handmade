@@ -21,9 +21,10 @@ function CustomerDetailsViewPage() {
   const viewAllcustomer = async () => {
     try {
       const response = await adminallusersview();
+console.log(response);
 
       if (response.status === 200) {
-        const users = response.data.result;
+        const users = response.data.users;
         setAllUsers(users);
       }
     } catch (error) {

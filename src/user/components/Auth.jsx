@@ -172,6 +172,8 @@ const handleUserLogin = async()=>{
 
     const response = await loginUser(loginData)
     console.log(response);
+    console.log(response);
+    
     if(response.status===200){
       setLoginData({email:"",password:""})
 
@@ -179,11 +181,11 @@ const handleUserLogin = async()=>{
       handleClose()
       alert("login successfull")
 
-      if( response.data.loginUser.role=="user"){
+      if( response.data.user.role=="user"){
        navigate("/collections")
        window.location.reload()
       }
-      else if(response.data.loginUser.role=="admin"){
+      else if(response.data.user.role=="admin"){
         navigate('/admin')
       }
       
@@ -220,7 +222,7 @@ console.log(response);
 
 if(response.status===201 || response.status===200){
  sessionStorage.setItem("token",response.data.token);
-  const role =response.data.loginUser?.role || response.data.role;
+  const role =response.data.user?.role || response.data.role;
   if( role === "user"){
        navigate("/collections")
        window.location.reload()
