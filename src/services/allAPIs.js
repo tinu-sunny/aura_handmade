@@ -27,3 +27,31 @@ export const getUser = async()=>{
 export const adminallusersview = async()=>{
     return await commonAPIs('GET',`${serverURL}/admin-all-customer-views`,{},{})
 }
+
+export const addnewproducts = async(reqbody,reqheader)=>{
+    return await commonAPIs('POST',`${serverURL}/add-new-products`,reqbody,reqheader)
+}
+
+export const savedraftproducts = async(reqbody,reqheader)=>{
+    return await commonAPIs('POST',`${serverURL}/save-draft-products`,reqbody,reqheader)
+}
+
+export const deletedraftproducts = async(reqbody,reqheader)=>{
+    return await commonAPIs('POST',`${serverURL}/delete-draft-products`,reqbody,reqheader)
+}
+
+export const ViewAllProductsAdmin = async()=>{
+    return await commonAPIs('POST',`${serverURL}/admin-view-products`,{},{})
+}
+
+
+export const deleteProductsAdmin = async(reqbody)=>{
+    return await commonAPIs('POST',`${serverURL}/admin-delete-products`,reqbody,{})
+}
+export const viewProductById = async(id)=>{
+    return await commonAPIs('POST',`${serverURL}/view-products/${id}`,{},{})
+}
+
+export const updateProduct = async(reqbody)=>{
+    return await commonAPIs('PUT',`${serverURL}/update-product`,reqbody,{})
+}

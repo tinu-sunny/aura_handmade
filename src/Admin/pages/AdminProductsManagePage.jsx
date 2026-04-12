@@ -1,29 +1,64 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminSidebar from '../components/AdminSidebar'
 import AdminFooter from '../components/AdminFooter'
 import { Box, Button, Select, TextField, Typography,InputAdornment, MenuItem } from '@mui/material'
 import SearchIcon from "@mui/icons-material/Search";
 import TableWithPagenation from '../components/TableWithPagenation';
 import AdminModal from '../components/AdminModal';
+import { ViewAllProductsAdmin } from '../../services/allAPIs';
 
 function AdminProductsManagePage() {
+  const [allproducts,setAllproducts]=useState([])
+
+  const getallProducts = async () =>{
+    const response = await ViewAllProductsAdmin()
+    console.log("dsds",response);
+    if(response.status===200){
+      const data= response.data.allproducts
+      console.log("dataaaa",data);
+      
+      setAllproducts(data)
+    }
+    
+  }
+console.log("dsgdush");
+
+  const handleProductUpdate = (updatedProduct) => {
+    setAllproducts(prevProducts => {
+      const existingIndex = prevProducts.findIndex(product => product._id === updatedProduct._id);
+      
+      if (existingIndex >= 0) {
+        // Update existing product
+        const newProducts = [...prevProducts];
+        newProducts[existingIndex] = updatedProduct;
+        return newProducts;
+      } else {
+        // Add new product
+        return [updatedProduct, ...prevProducts];
+      }
+    });
+  };
+
+  useEffect(()=>{
+    getallProducts()
+  },[])
   return (
   <>
   <AdminSidebar/>
     
 {/* body */}
 {/* top body box */}
-<Box sx={{m:5}}>
+<Box sx={{m:{xs:2,md:5,lg:5}}}>
    
    {/* heading + add product button */}
-   <Box sx={{ display:'flex', justifyContent:"space-between", alignItems:"center" ,m:5}}>
+   <Box sx={{ display:'flex', justifyContent:"space-between", alignItems:"center" ,m:{xs:0,md:5,lg:5}}}>
     {/* heading */}
 <Box>
   <Typography
     variant="h5"
     sx={{
       fontWeight: "bold",
-      fontSize: { xs: "24px", md: "32px" },
+      fontSize: { xs: "20px", md: "32px" },
       color: "#f4b400",
       animation: "fadeSlide 1s ease-in-out",
       "@keyframes fadeSlide": {
@@ -45,6 +80,8 @@ function AdminProductsManagePage() {
     variant="body1"
     sx={{
       fontWeight: 500,
+      fontSize: { xs: "15px", md: "20px" },
+
       color: "#555",
       mt: 0.5,
       animation: "fadeSlide 1.4s ease-in-out",
@@ -65,7 +102,7 @@ function AdminProductsManagePage() {
 </Box>
   {/* new product add button */}
   <Box>
-  <AdminModal view={"addNewProduct"}/>
+  <AdminModal view={"addNewProduct"} onUpdate={handleProductUpdate}/>
   </Box>
    </Box>
 
@@ -144,7 +181,7 @@ function AdminProductsManagePage() {
 
 {/* Table For product view  */}
 <Box sx={{mt:5}} >
-  <TableWithPagenation/>
+  <TableWithPagenation products={allproducts} onUpdate={handleProductUpdate}/>
 </Box>
 
    {/* top box end */}

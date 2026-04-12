@@ -11,6 +11,7 @@ import ProductViewPage from "./user/Pages/ProductViewPage";
 import CategoryProductView from "./user/Pages/CategoryProductView";
 import CustomerDetailsViewPage from "./Admin/pages/CustomerDetailsViewPage";
 import EnquiryViewPage from "./Admin/pages/EnquiryViewPage";
+import PageNotFound from "../Pages/PageNotFound";
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
         <Route path="/admin-product-manage-page" element={<AdminProductsManagePage />}/>
         <Route path="/admin-customer-view-page" element={<CustomerDetailsViewPage />}/>
         <Route path="/admin-enquiry-view-page" element={<EnquiryViewPage/>}/>
+     
+     
+     
+     
+     <Route path="*" element={<PageNotFound/>}/>
       </Routes>
     </>
   );
