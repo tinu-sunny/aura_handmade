@@ -24,6 +24,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Height } from "@mui/icons-material";
 import { addnewproducts, deletedraftproducts, savedraftproducts, viewProductById, updateProduct } from "../../services/allAPIs";
 import { useEffect } from "react";
+import { useSnackbar } from "../../Components/Snackbar";
 
 const style = {
   position: "absolute",
@@ -52,7 +53,7 @@ const style = {
 
 function AdminModal({ view ,productId, onUpdate}) {
   const [open, setOpen] = React.useState(false);
-
+ const { showSnackbar } = useSnackbar();
   if(open===false){
     sessionStorage.removeItem("drafttid")
   }
@@ -215,7 +216,9 @@ if(validate())
 const response = await addnewproducts(formData)
 // console.log("inside",response);
 if(response.status===200){
-  alert(response.data.message)
+  // alert(response.data.message)
+       showSnackbar(response.data.message, "success");
+
   // Call the callback to add the new product to the parent component's state
   if (onUpdate && response.data.product) {
     onUpdate(response.data.product);
@@ -237,13 +240,18 @@ if(response.status===200){
 }}
 
 else{
-  alert("plese fill the form")
+  // alert("plese fill the form")
+       showSnackbar("plese fill the form", "info");
+
+  
 }
 
   }
   catch(err){
-    // console.log(err);
-    alert(err.response.data.message)
+    console.log(err);
+    // alert(err.response.data.message)
+       showSnackbar(err.response.data.message || "Error in adding data", "error");
+    
     
   }
 }
@@ -283,14 +291,18 @@ const handleUpdateproducts = async () => {
   const hasChanges = JSON.stringify(formData) !== JSON.stringify(originalProductData);
   
   if (!hasChanges) {
-    alert("No changes detected");
+    // alert("No changes detected");
+       showSnackbar("No changes detected", "info");
+
     setOpen(false)
     return;
   }
 
   // Validate form
   if (!validate()) {
-    alert("Please fill all required fields correctly");
+    // alert("Please fill all required fields correctly");
+       showSnackbar("Please fill all required fields correctly", "info");
+    
     return;
   }
 
@@ -304,7 +316,8 @@ const handleUpdateproducts = async () => {
     const response = await updateProduct(updateData);
     
     if (response.status === 200) {
-      alert("Product updated successfully");
+      // alert("Product updated successfully");
+       showSnackbar("Product updated successfully", "success");
       // Call the callback to update the parent component's state
       if (onUpdate) {
         const updatedProduct = { ...formData, _id: productId };
@@ -314,7 +327,9 @@ const handleUpdateproducts = async () => {
     }
   } catch (err) {
     console.log("Error updating product:", err);
-    alert(err.response?.data?.message || "Error updating product");
+    // alert(err.response?.data?.message || "Error updating product");
+       showSnackbar(err.response?.data?.message || "Error updating product", "error");
+
   }
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AdminSidebar from '../components/AdminSidebar'
 import AdminFooter from '../components/AdminFooter'
-import { getUser } from '../../services/allAPIs'
+import { adminallusersview, getUser, ViewAllProductsAdmin } from '../../services/allAPIs'
 import { useNavigate } from 'react-router-dom'
 import { Box, Typography, Grid } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -14,7 +14,8 @@ function AdminLandingPage() {
 
  // state 
 const [token ,setToken]= useState()
-
+const [totalProducts,setTotalProducts]=useState(0)
+const [allUsers,setAllUsers]=useState(0)
 console.log(token);
 
   const getaccess = async()=>{
@@ -40,6 +41,22 @@ console.log(token);
   
     useEffect(()=>{
       getaccess()
+      const totalproducts = async () => {
+    try {
+      const res = await ViewAllProductsAdmin();
+      const allusers = await adminallusersview();
+      if(res.status==200 && allusers.status==200){
+        setTotalProducts(res?.data?.allproducts?.length)
+        setAllUsers( allusers.data.users.length)
+
+      }
+      console.log("response", allusers.data.users.length);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  totalproducts();
     },[])
   return (
 
@@ -105,7 +122,7 @@ console.log(token);
             Total Users
           </Typography>
           <Typography sx={{ fontSize:{xs:25,md:30} }}  variant="h4" fontWeight="bold">
-            12
+            {allUsers}
           </Typography>
         </Box>
       </Grid>
@@ -132,7 +149,7 @@ console.log(token);
             Products
           </Typography>
           <Typography sx={{ fontSize:{xs:25,md:30} }}  variant="h4" fontWeight="bold">
-            8
+            {totalProducts}
           </Typography>
         </Box>
       </Grid>

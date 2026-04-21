@@ -22,6 +22,15 @@ export const getUser = async()=>{
 }
 
 
+export const viewlastestcollection = async()=>{
+    return await commonAPIs('GET',`${serverURL}/new-collections`,{},{})
+}
+
+export const viewProductDataById = async(id)=>{
+    return await commonAPIs('GET',`${serverURL}/View-productById/${id}`,{},{})
+}
+
+
 // admin API calls
 
 export const adminallusersview = async()=>{

@@ -1,0 +1,413 @@
+import React, { useEffect } from "react";
+import UserHeader from "../components/UserHeader";
+import UserFooter from "../components/UserFooter";
+import { Box, Typography, Avatar, Button } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import { useContext } from "react";
+import { contextState } from "../../context/ContextApiState";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { ViewAllProductsAdmin, viewlastestcollection } from "../../services/allAPIs";
+
+const testimonials = [
+  {
+    name: "JULIANNA V.",
+    location: "PARIS, FRANCE",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    text: "The craftsmanship is unparalleled; every piece feels like a work of art tailored just for me.",
+  },
+  {
+    name: "MARCUS B.",
+    location: "NEW YORK, NY",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    text: "A curated experience that feels personal and profoundly exclusive. The attention to detail is remarkable.",
+  },
+  {
+    name: "ELENA S.",
+    location: "MILAN, ITALY",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    text: "Timeless pieces that define my wardrobe with effortless elegance. I find myself returning every season.",
+  },
+];
+
+function LandingPageUser() {
+
+  // navigation
+  const navigate = useNavigate()
+  const { open, auth, setOpen, setAuth } = useContext(contextState);
+
+  // new collection list 
+  const [newcollection,setNewcollection]= useState([])
+console.log(newcollection);
+
+  const viewnewcollection = async()=>{
+
+    try{
+  const response = await viewlastestcollection()
+  if(response.status==200){
+    console.log(response);
+    const newdata  = response.data.allproducts
+   if (newdata.length >= 4) {
+  setNewcollection(newdata.slice(0, 4));   // stores first 4 items
+    console.log(newcollection);
+
+} else {
+  setNewcollection(newdata.slice(0, 4));               // if less than 4, store all
+}
+    console.log(newdata);
+    console.log(newcollection);
+    
+    
+    // alert("data")
+  }
+    }
+    catch(err){
+      console.log(err);
+      alert("server error")
+      
+    }
+
+   
+  }
+
+
+const handlediscover  = async(id)=>{
+
+   const token = sessionStorage.getItem("token")
+   if(token){
+   navigate(`/product-view/${id}`)
+   }
+   else{
+navigate('/collections')
+   }
+}
+
+useEffect(()=>{
+  viewnewcollection()
+},[])
+
+
+  return (
+    <>
+      <UserHeader />
+
+      {/* landing page image section */}
+      <section>
+        <Box
+          sx={{
+            height: "60vh",
+            backgroundImage: `url("https://t4.ftcdn.net/jpg/03/97/34/39/360_F_397343924_6WlXOaMVHNKkhMs2l8AHJ5e9MQ03YiBU.jpg")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            color: "#fff",
+            position: "relative",
+          }}
+        >
+          {/* Premium Gradient Overlay */}
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.4))",
+            }}
+          />
+
+          {/* Content */}
+          <Box sx={{ position: "relative", zIndex: 2, px: 3 }}>
+            {/* Main Title */}
+            <Typography
+              sx={{
+                fontFamily: "serif",
+                fontSize: { xs: "2.5rem", md: "4.5rem" },
+                fontWeight: 500,
+                letterSpacing: 4,
+                textShadow: "2px 4px 15px rgba(0,0,0,0.6)",
+              }}
+            >
+              HASTHKALA
+            </Typography>
+
+            {/* Decorative Line */}
+            <Box
+              sx={{
+                width: 80,
+                height: 3,
+                background: "linear-gradient(90deg, #8e2de2, #4a00e0)",
+                mx: "auto",
+                my: 2,
+                borderRadius: 5,
+              }}
+            />
+
+            {/* Tagline */}
+            <Typography
+              sx={{
+                fontFamily: "serif",
+                fontStyle: "italic",
+                fontSize: { xs: "1rem", md: "1.5rem" },
+                maxWidth: 700,
+                mx: "auto",
+                mb: 2,
+                opacity: 0.9,
+              }}
+            >
+              Crafted with Love to Bring Handmade Happiness for Every Occasion.
+            </Typography>
+
+            <Typography
+              sx={{
+                mb: 4,
+                letterSpacing: 2,
+                fontSize: "0.9rem",
+                opacity: 0.8,
+              }}
+            >
+              By Smitha
+            </Typography>
+
+            {/* Buttons */}
+            <Box
+              sx={{
+                display: "flex",
+                gap: 3,
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <Button
+                onClick={() => {
+                  setOpen(true);
+                  setAuth(false);
+                }}
+                variant="contained"
+                sx={{
+                  background: "linear-gradient(90deg, #8e2de2, #4a00e0)",
+                  px: 5,
+                  py: 1.5,
+                  fontWeight: 600,
+                  borderRadius: "30px",
+                  letterSpacing: 1,
+                  boxShadow: "0px 8px 25px rgba(142,45,226,0.4)",
+                  "&:hover": {
+                    transform: "translateY(-3px)",
+                    boxShadow: "0px 12px 30px rgba(142,45,226,0.6)",
+                  },
+                }}
+              >
+                SIGN UP
+              </Button>
+
+              <Link to={"/collections"}>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    color: "#fff",
+                    borderColor: "#fff",
+                    px: 5,
+                    py: 1.5,
+                    borderRadius: "30px",
+                    letterSpacing: 1,
+                    backdropFilter: "blur(4px)",
+                    "&:hover": {
+                      backgroundColor: "rgba(255,255,255,0.15)",
+                      borderColor: "#fff",
+                    },
+                  }}
+                >
+                  SHOP COLLECTION
+                </Button>
+              </Link>
+            </Box>
+          </Box>
+        </Box>
+      </section>
+
+      {/* Featured Collections Section */}
+      <section>
+        <Box sx={{ py: 8, px: { xs: 3, md: 10 }, backgroundColor: "#f8f8f6" }}>
+          {/* Header */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              mb: 6,
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                fontFamily: "serif",
+                fontWeight: 500,
+              }}
+            >
+              Featured Collection
+            </Typography>
+
+            <Button
+              variant="outlined"
+              sx={{
+                fontSize: "0.75rem",
+                letterSpacing: 1,
+                color: "#666",
+                borderColor: "#ccc",
+              }}
+            >
+              View All
+            </Button>
+          </Box>
+
+          {/* Cards */}
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 4,
+              justifyContent: "center",
+            }}
+          >
+            {newcollection.map((item) => (
+              <Box
+                key={item}
+                sx={{
+                  width: { xs: "100%", sm: "45%", md: "20%" },
+                  backgroundColor: "#fff",
+                  borderRadius: 4,
+                  p: 2,
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+                  transition: "0.3s",
+                  "&:hover": {
+                    transform: "translateY(-8px)",
+                    boxShadow: "0 15px 40px rgba(0,0,0,0.15)",
+                  },
+                }}
+              >
+                {/* Image */}
+                <Box
+                  sx={{
+                    backgroundImage:
+                      'url("https://www.royalcropscience.com/product2/dummyproductimage.jpg")',
+                    height: 260,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    borderRadius: 3,
+                    mb: 3,
+                  }}
+                />
+
+                <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                  {item.name}
+                </Typography>
+
+                <Typography sx={{ color: "#777", mb: 2, fontSize: "0.9rem" }}>
+                  {item.description}
+                </Typography>
+
+                <Typography
+                onClick={()=>{handlediscover(item._id)}}
+                  sx={{
+                    color: "#8e2de2",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  Discover →
+                </Typography>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      </section>
+
+      {/*Testimonial */}
+
+      <section>
+        <Box
+          sx={{
+            height: "400px",
+            background:
+              "radial-gradient(circle at center, #f4c48c 0%, #e0a96d 60%, #d89155 100%)",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            px: 2,
+            overflow: "hidden",
+          }}
+        >
+          {/* Heading */}
+          <Typography
+            sx={{
+              fontFamily: "serif",
+              fontSize: { xs: "1.2rem", md: "1.8rem" },
+              mb: 2,
+              color: "#1c1c1c",
+            }}
+          >
+            Voices of the Collection
+          </Typography>
+
+          {/* Swiper */}
+          <Box sx={{ width: "100%", maxWidth: 600 }}>
+            <Swiper
+              modules={[Autoplay]}
+              autoplay={{ delay: 2000 }}
+              loop
+              slidesPerView={1}
+            >
+              {testimonials.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <Box px={2}>
+                    <Avatar
+                      src={item.image}
+                      sx={{
+                        width: 60,
+                        height: 60,
+                        margin: "0 auto",
+                        mb: 1,
+                      }}
+                    />
+
+                    <Typography
+                      sx={{
+                        fontSize: "0.8rem",
+                        fontStyle: "italic",
+                        mb: 1,
+                        color: "#1c1c1c",
+                      }}
+                    >
+                      "{item.text}"
+                    </Typography>
+
+                    <Typography sx={{ fontSize: "0.75rem", fontWeight: 600 }}>
+                      {item.name}
+                    </Typography>
+
+                    <Typography sx={{ fontSize: "0.65rem" }}>
+                      {item.location}
+                    </Typography>
+                  </Box>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Box>
+        </Box>
+      </section>
+
+      <UserFooter />
+    </>
+  );
+}
+
+export default LandingPageUser;

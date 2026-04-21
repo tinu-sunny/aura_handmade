@@ -11,7 +11,8 @@ import ProductViewPage from "./user/Pages/ProductViewPage";
 import CategoryProductView from "./user/Pages/CategoryProductView";
 import CustomerDetailsViewPage from "./Admin/pages/CustomerDetailsViewPage";
 import EnquiryViewPage from "./Admin/pages/EnquiryViewPage";
-import PageNotFound from "../Pages/PageNotFound";
+import PageNotFound from "./Pages/PageNotFound";
+
 
 function App() {
   return (
