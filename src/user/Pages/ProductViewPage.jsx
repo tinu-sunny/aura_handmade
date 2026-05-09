@@ -14,13 +14,30 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserHeader from "../components/UserHeader";
 import UserFooter from "../components/UserFooter";
+import { useParams } from "react-router-dom";
+import { viewProductDataById } from "../../services/allAPIs";
 
 function ProductViewPage() {
   const [qty, setQty] = useState(1);
   const [selectedWood, setSelectedWood] = useState("Walnut");
+   const {id}= useParams()
+   const [productData,setProductData]=useState({})
+
+  // function for productdata with id 
+
+  const productdatawitId = async()=>{
+   const res = await viewProductDataById(id)
+   console.log(res);
+   if(res.status==200){
+  setProductData(res.data.product)
+  }
+  }
+  useEffect(()=>{
+    productdatawitId()
+  },[])
 
   const woods = [
     { name: "Walnut", color: "#5c4033" },
@@ -82,7 +99,7 @@ function ProductViewPage() {
                   lineHeight: 1.2,
                 }}
               >
-                The Heritage Handcrafted Name Board
+                {productData?.name}
               </Typography>
 
               {/* Price & Rating */}
@@ -90,7 +107,7 @@ function ProductViewPage() {
                 sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}
               >
                 <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
-                  $249.00
+                  ${productData?.price}
                 </Typography>
                 <Rating value={4.5} precision={0.5} readOnly />
                 <Typography sx={{ fontSize: 13, color: "#6b7280" }}>
@@ -99,9 +116,7 @@ function ProductViewPage() {
               </Box>
 
               <Typography sx={{ color: "#6b7280", mb: 4 }}>
-                "Each board is a unique narrative of nature, hand-carved over 48
-                hours using sustainable hardwoods and finished with organic oils
-                to last generations."
+                "{productData?.description}."
               </Typography>
 
               {/* Wood Selection */}

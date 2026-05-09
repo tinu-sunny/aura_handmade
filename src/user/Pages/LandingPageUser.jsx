@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import UserHeader from "../components/UserHeader";
 import UserFooter from "../components/UserFooter";
 import { Box, Typography, Avatar, Button } from "@mui/material";
@@ -32,6 +32,13 @@ const testimonials = [
 
 function LandingPageUser() {
   const { open, auth, setOpen, setAuth } = useContext(contextState);
+
+  const [token,setToken]=useState("")
+
+  useEffect(()=>{
+    const tk = sessionStorage.getItem('token')
+    setToken(tk)
+  },[])
   return (
     <>
       <UserHeader />
@@ -124,7 +131,7 @@ function LandingPageUser() {
                 flexWrap: "wrap",
               }}
             >
-              <Button
+             {token?"": <Button
                 onClick={() => {
                   setOpen(true);
                   setAuth(false);
@@ -145,7 +152,7 @@ function LandingPageUser() {
                 }}
               >
                 SIGN UP
-              </Button>
+              </Button>}
 
               <Link to={"/collections"}>
                 <Button

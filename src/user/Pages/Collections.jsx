@@ -100,7 +100,6 @@ function Collections() {
   // usestate
   const [token, setToken] = useState("");
 // display products 
-
 const [allProducts,setAllproducts]= useState([])
 
 

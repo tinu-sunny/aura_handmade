@@ -17,6 +17,7 @@ import { googleLogin, loginUser, userRegistration } from "../../services/allAPIs
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useSnackbar } from "../../Components/Snackbar";
 
 const style = {
   position: "absolute",
@@ -54,7 +55,7 @@ function Auth() {
   email:"",
   password:""
  })
-
+ const { showSnackbar } = useSnackbar();
  console.log(loginData);
  
 
@@ -144,7 +145,9 @@ const validateFormLogin = () => {
     if (response.status === 201) {
       setUserData(user)
       setAuth(true)
-      alert(response.data.message);
+      // alert(response.data.message);
+             showSnackbar(response.data.message, "success");
+
     }
 
   } catch (err) {
@@ -152,11 +155,15 @@ const validateFormLogin = () => {
     // console.log(err.response);
     
     if (err.response) {
-      alert(err.response.data.message);
+      // alert(err.response.data.message);
+             showSnackbar(err.response.data.message, "success");
+
       setUserData(user)
 
     } else {
-      alert("Server not responding");
+      // alert("Server not responding");
+             showSnackbar("Server not responding", "success");
+
     }
 
   }
@@ -179,7 +186,9 @@ const handleUserLogin = async()=>{
 
       sessionStorage.setItem("token",response.data.token);
       handleClose()
-      alert("login successfull")
+      // alert("login successfull")
+             showSnackbar("login successfull", "success");
+
 
       if( response.data.user.role=="user"){
        navigate("/collections")
@@ -196,7 +205,9 @@ const handleUserLogin = async()=>{
 
   catch(err){
     console.log(err.response);
-    alert(err.response.data.message)
+    // alert(err.response.data.message)
+             showSnackbar(err.response.data.message, "error");
+
     
   }
 }
@@ -230,7 +241,9 @@ if(response.status===201 || response.status===200){
       else if(role === "admin" ){
         navigate('/admin')
       }
-  alert("Login successful")
+  // alert("Login successful")
+             showSnackbar("login successfull", "success");
+
   setOpen(false)
 }
 
